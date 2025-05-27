@@ -150,12 +150,12 @@ internal class Program
         const string LastMessage = "lastmessage";
         const string TerminationToken = "yes";
 
-        var chiefOfStaffAgent = new ChatCompletionAgent()
+        var assistantAgent = new ChatCompletionAgent()
         {
-            Name = Constants.Agents.ChiefOfStaff,
+            Name = Constants.Agents.Assistant,
             Instructions =
             """
-        You are the Chief of Staff Agent, responsible for overseeing and orchestrating AI-powered interactions.
+        You are the Assistant Agent, responsible for overseeing and orchestrating AI-powered interactions.
         Your goal is to ensure that user queries are **interpreted accurately** and **routed to the appropriate agent**.
 
             - When a user provides a prompt, you analyze its intent.
@@ -270,7 +270,7 @@ internal class Program
                 - {{{Constants.Agents.Calendar}}}
                 - {{{Constants.Agents.Email}}}
                 - {{{Constants.Agents.LegalSecretary}}}
-                - {{{Constants.Agents.ChiefOfStaff}}}
+                - {{{Constants.Agents.Assistant}}}
 
                 Always follow these rules when choosing the next participant:
                 - When RESPONSE is a user input, analyze the message:
@@ -278,8 +278,8 @@ internal class Program
                     - When it contains words like **"calendar"**, **"meeting"**, **"event"**, choose {{{Constants.Agents.Calendar}}}.
                     - When it contains words like **"email"**, **"inbox"**, **"send mail"**, choose {{{Constants.Agents.Email}}}.
                 - When RESPONSE is by a specialized agent (Contacts, Calendar, or Email), the **next step MUST ALWAYS be the {{{Constants.Agents.LegalSecretary}}} **.
-                - When RESPONSE is by LegalSecretaryAgent, return to the {{{Constants.Agents.ChiefOfStaff}}}.
-                - When the topic is unclear, default to the {{{Constants.Agents.ChiefOfStaff}}}.
+                - When RESPONSE is by LegalSecretaryAgent, return to the {{{Constants.Agents.Assistant}}}.
+                - When the topic is unclear, default to the {{{Constants.Agents.Assistant}}}.
 
                 RESPONSE:
                 {{$lastmessage}}
@@ -302,25 +302,25 @@ internal class Program
 
         ChatHistoryTruncationReducer historyReducer = new(1);   // Use a history reducer to optimize token usage. Only keep the last message in the history.
 
-        AgentGroupChat chat = new(chiefOfStaffAgent, contactsAgent, calendarAgent, emailAgent, legalSecretaryAgent)
+        AgentGroupChat chat = new(assistantAgent, contactsAgent, calendarAgent, emailAgent, legalSecretaryAgent)
         {
             ExecutionSettings = new AgentGroupChatSettings
             {
                 SelectionStrategy = new KernelFunctionSelectionStrategy(selectionFunction, kernel)
                 {
-                    InitialAgent = chiefOfStaffAgent,   // Always start with the Chief of Staff Agent
+                    InitialAgent = assistantAgent,      // Always start with the Assistant Agent
                     HistoryReducer = historyReducer,    // Optimize token usage using a history reducer
                     HistoryVariableName = LastMessage,  // Set prompt variable for tracking
                     ResultParser = (result) =>
                     {
-                        var selectedAgent = result.GetValue<string>() ?? chiefOfStaffAgent.Name;
+                        var selectedAgent = result.GetValue<string>() ?? assistantAgent.Name;
                         Console.WriteLine($@"🔍 Debug: Selection strategy chose {selectedAgent}");
                         return selectedAgent;
                     },
                 },
                 TerminationStrategy = new KernelFunctionTerminationStrategy(terminationFunction, kernel)
                 {
-                    Agents = [chiefOfStaffAgent],       // Evaluate only for Chief of Staff responses
+                    Agents = [assistantAgent],          // Evaluate only for Assistant responses
                     HistoryReducer = historyReducer,    // Optimize token usage using a history reducer
                     HistoryVariableName = LastMessage,  // Set prompt variable for tracking
                     MaximumIterations = 5,              // Limit total turns to avoid infinite loops

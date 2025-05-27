@@ -42,7 +42,7 @@ internal static class Constants
 
     internal static class Agents
     {
-        internal static readonly string ChiefOfStaff = @"ChiefOfStaffAgent";
+        internal static readonly string Assistant = @"AssistantAgent";
 
         internal static readonly string Calendar = @"CalendarAgent";
 
