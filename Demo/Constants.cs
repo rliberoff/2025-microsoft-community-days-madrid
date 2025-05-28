@@ -11,10 +11,14 @@ internal static class Constants
     internal static readonly HashSet<string> FieldsToIgnore = new(
     [
         "@odata.type",
+        "allowNewTimeProposals",
         "attachments",
         "bccRecipients",
         "bodyPreview",
+        "calendar",
         "categories",
+        "changeKey",
+        "createdDateTime",
         "ccRecipients",
         "conversationId",
         "conversationIndex",
@@ -22,20 +26,44 @@ internal static class Constants
         "flag",
         "from",
         "hasAttachments",
+        "hideAttendees",
+        "iCalUId",
         "id",
+        "importance",
         "inferenceClassification",
+        "instances",
         "internetMessageHeaders",
+        "isCancelled",
         "isDeliveryReceiptRequested",
         "isDraft",
+        "isOnlineMeeting",
+        "isOrganizer",
         "isRead",
         "isReadReceiptRequested",
+        "isReminderOn",
+        "lastModifiedDateTime",
         "multiValueExtendedProperties",
+        //"onlineMeeting",
+        //"onlineMeetingProvider",
+        //"onlineMeetingUrl",
+        //"organizer",
+        "originalEndTimeZone",
+        "originalStart",
+        "originalStartTimeZone",
         "parentFolderId",
+        "pattern",
         "receivedDateTime",
+        "recurrence",
+        "reminderMinutesBeforeStart",
         "replyTo",
+        "responseRequested",
+        "responseStatus",
         "sender",
+        "sensitivity",
         "sentDateTime",
+        "seriesMasterId",
         "singleValueExtendedProperties",
+        "transactionId",
         "uniqueBody",
         "webLink",
     ], StringComparer.OrdinalIgnoreCase);
@@ -50,6 +78,6 @@ internal static class Constants
 
         internal static readonly string Email = @"EmailAgent";
 
-        internal static readonly string LegalSecretary = @"LegalSecretaryAgent";
+        internal static readonly string LegalAdvisor = @"LegalAdvisorAgent";
     }
 }

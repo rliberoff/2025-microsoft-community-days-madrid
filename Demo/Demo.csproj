@@ -39,12 +39,6 @@
         <None Update="Plugins\CopilotAgentPlugins\ContactsPlugin\contacts-openapi.yml">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-        <None Update="Plugins\CopilotAgentPlugins\DriveItemPlugin\driveitem-apiplugin.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Plugins\CopilotAgentPlugins\DriveItemPlugin\driveitem-openapi.yml">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
         <None Update="Plugins\CopilotAgentPlugins\MessagesPlugin\messages-apiplugin.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>

@@ -17,6 +17,10 @@
       {
         "name": "me_calendar_ListEvents",
         "description": "Retrieve a list of events in a calendar. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. The list of events contains single instance meetings and series masters. To get expanded event instances, you can get the calendar view, or\nget the instances of an event."
+      },
+      {
+        "name": "me_CreateEvents",
+        "description": "Create one or more single-value extended properties in a new or existing instance of a resource. The following user resources are supported: The following group resources: See Extended properties overview for more information about when to use\nopen extensions or extended properties, and how to specify extended properties."
       }
     ],
     "runtimes": [
@@ -29,7 +33,8 @@
           "url": "calendar-openapi.yml"
         },
         "run_for_functions": [
-          "me_calendar_ListEvents"
+          "me_calendar_ListEvents",
+          "me_CreateEvents"
         ]
       }
     ]
