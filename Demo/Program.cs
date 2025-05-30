@@ -188,7 +188,7 @@ internal class Program
                 Your job is to validate and refine calendar queries before execution.
                 When requiring an organizer, use my information.
                 When requiring to add attendees, ask the {{{Constants.Agents.Contacts}}} agent for contact details.
-                When requiring to create an on-line meeting, use the Microsoft Teams provider.
+                When requiring to create an on-line meeting, ALWAYS use the Microsoft Teams provider.
             """,
             Kernel = kernel,
             Arguments = new KernelArguments(new AzureOpenAIPromptExecutionSettings()
